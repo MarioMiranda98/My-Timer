@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:form_builder_validators/form_builder_validators.dart';
 
 import 'package:get/get.dart';
-import 'package:my_timer/app/data/enums/button_type_enum.dart';
-import 'package:my_timer/app/resources/color_manager.dart';
-import 'package:my_timer/app/resources/font_manager.dart';
+import 'package:my_timer/app/modules/home/data/option_items_data.dart';
+import 'package:my_timer/app/modules/home/widgets/option_item.dart';
+import 'package:my_timer/app/modules/home/widgets/options_carousel.dart';
+import 'package:my_timer/app/modules/home/widgets/selected_option.dart';
 import 'package:my_timer/app/resources/sizes_manager.dart';
-import 'package:my_timer/app/resources/text_style_manager.dart';
-import 'package:my_timer/app/widgets/my_timer_button_widget.dart';
-import 'package:my_timer/app/widgets/my_timer_form_widget.dart';
-import 'package:my_timer/app/widgets/my_timer_textfield_widget.dart';
-import 'package:my_timer/app/widgets/my_timer_time_chart/my_timer_time_chart_widget.dart';
+import 'package:my_timer/app/utils/helpers.dart';
+import 'package:my_timer/app/widgets/my_timer_appbar_widget.dart';
+import 'package:my_timer/app/widgets/my_timer_scaffold.dart';
 
 import '../controllers/home_controller.dart';
 
@@ -22,196 +20,42 @@ class HomeView extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('HomeView'),
-        centerTitle: true,
-      ),
+    final theme = Theme.of(context);
+
+    return MyTimerScaffold(
+      appBar: MyTimerAppbarWidget(theme: theme),
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-            SizedBox(height: SizesManager.s12),
-            Center(
-              child: Text('HomeView is working',
-                  style: TextStyleManager.getMediumStyle(
-                      color: ColorManager.black, fontSize: FontsManager.s24)),
-            ),
-            SizedBox(height: SizesManager.s12),
-            Text(
-              'Normal sin Label',
-              style: TextStyleManager.getMediumStyle(
-                color: ColorManager.darkGray,
-                fontSize: FontsManager.s18,
-              ),
-            ),
-            SizedBox(height: SizesManager.s12),
-            MyTimerTextFieldWidget(name: 'name'),
-            SizedBox(height: SizesManager.s12),
-            Text(
-              'Normal',
-              style: TextStyleManager.getMediumStyle(
-                color: ColorManager.darkGray,
-                fontSize: FontsManager.s18,
-              ),
-            ),
-            SizedBox(height: SizesManager.s12),
-            MyTimerTextFieldWidget(name: 'name', label: 'name'),
-            SizedBox(height: SizesManager.s12),
-            Text(
-              'Con Suffix (Widget)',
-              style: TextStyleManager.getMediumStyle(
-                color: ColorManager.darkGray,
-                fontSize: FontsManager.s18,
-              ),
-            ),
-            SizedBox(height: SizesManager.s12),
-            MyTimerTextFieldWidget(
-              name: 'name',
-              label: 'Nombre',
-              suffixWidget: Icon(
-                Icons.remove_red_eye_rounded,
-                color: ColorManager.secondary,
-              ),
-            ),
-            SizedBox(height: SizesManager.s12),
-            Text(
-              'Con Prefix (Widget)',
-              style: TextStyleManager.getMediumStyle(
-                color: ColorManager.darkGray,
-                fontSize: FontsManager.s18,
-              ),
-            ),
-            SizedBox(height: SizesManager.s12),
-            MyTimerTextFieldWidget(
-              name: 'name',
-              label: 'Nombre',
-              prefixWidget: Icon(
-                Icons.remove_red_eye_rounded,
-                color: ColorManager.secondary,
-              ),
-            ),
-            SizedBox(height: SizesManager.s12),
-            Text(
-              'Con Contador',
-              style: TextStyleManager.getMediumStyle(
-                color: ColorManager.darkGray,
-                fontSize: FontsManager.s18,
-              ),
-            ),
-            SizedBox(height: SizesManager.s12),
-            MyTimerTextFieldWidget(
-              name: 'name',
-              label: 'Nombre',
-              showCounter: true,
-            ),
-            SizedBox(height: SizesManager.s12),
-            Text(
-              'Con Contador / Max Length',
-              style: TextStyleManager.getMediumStyle(
-                color: ColorManager.darkGray,
-                fontSize: FontsManager.s18,
-              ),
-            ),
-            SizedBox(height: SizesManager.s12),
-            MyTimerTextFieldWidget(
-              name: 'name',
-              label: 'Nombre',
-              maxLength: 30,
-              showCounter: true,
-            ),
-            SizedBox(height: SizesManager.s12),
-            Text(
-              'Con Error',
-              style: TextStyleManager.getMediumStyle(
-                color: ColorManager.darkGray,
-                fontSize: FontsManager.s18,
-              ),
-            ),
-            SizedBox(height: SizesManager.s12),
-            MyTimerTextFieldWidget(
-              name: 'name',
-              label: 'Nombre',
-              errorWidget: Text(
-                'error',
-                style: TextStyleManager.getSemiBoldStyle(
-                  color: Colors.red,
-                  fontSize: FontsManager.s16,
+        child: SizedBox(
+          height: Helpers.getRealScreenHeight(context),
+          child: Column(
+            children: [
+              SizedBox(height: SizesManager.s12),
+              Obx(
+                () => OptionsCarousel(
+                  options: OptionItemsData.options
+                      .map(
+                        (option) => OptionItem(
+                          icon: option.icon,
+                          title: option.title,
+                          isSelected:
+                              controller.currentIndex.value == option.index,
+                          animation: controller.animations[option.index],
+                          animationController:
+                              controller.animationsController[option.index],
+                          onHandleTap: controller.onHandleTap,
+                          index: option.index,
+                        ),
+                      )
+                      .toList(),
                 ),
               ),
-            ),
-            SizedBox(height: SizesManager.s12),
-            SizedBox(
-              height: 140.0,
-              child: MyTimerFormWidget(
-                formKey: formKey,
-                fields: [
-                  MyTimerTextFieldWidget(
-                    name: 'name',
-                    label: 'name',
-                    formValidators: [
-                      FormBuilderValidators.required(
-                          errorText: 'The name is required'),
-                    ],
-                  ),
-                  MyTimerTextFieldWidget(
-                    name: 'password',
-                    label: 'password',
-                    obscureText: true,
-                    formValidators: [
-                      FormBuilderValidators.required(
-                          errorText: 'The password is required')
-                    ],
-                  ),
-                ],
+              Expanded(
+                child: SelectedOption(
+                  currentIndex: controller.currentIndex,
+                ),
               ),
-            ),
-            SizedBox(height: SizesManager.s12),
-            ElevatedButton(
-                onPressed: () {
-                  print(formKey.currentState!.validate());
-                },
-                child: Text('Accion')),
-            SizedBox(height: SizesManager.s12),
-            MyTimerButtonWidget(
-              text: 'Name',
-              onPressed: () {},
-            ),
-            SizedBox(height: SizesManager.s12),
-            MyTimerButtonWidget(
-              text: 'Name',
-              type: ButtonType.secondary,
-              onPressed: () {},
-            ),
-            SizedBox(height: SizesManager.s12),
-            MyTimerButtonWidget(
-              text: 'Name',
-              type: ButtonType.ghost,
-              onPressed: () {},
-            ),
-            SizedBox(height: SizesManager.s12),
-            MyTimerButtonWidget(
-              text: 'Name',
-              type: ButtonType.disabled,
-              onPressed: () {},
-            ),
-            SizedBox(height: SizesManager.s12),
-            MyTimerButtonWidget(
-              text: 'Name',
-              icon: Icons.abc,
-              onPressed: () {},
-            ),
-            SizedBox(height: SizesManager.s12),
-            SizedBox(
-              width: MediaQuery.of(context).size.width * 0.25,
-              child: MyTimerButtonWidget(
-                icon: Icons.add,
-                onPressed: () {},
-              ),
-            ),
-            SizedBox(height: SizesManager.s12),
-            MyTimerTimeChartWidget(seconds: 15),
-            SizedBox(height: SizesManager.s12),
-          ],
+            ],
+          ),
         ),
       ),
     );

@@ -1,0 +1,16 @@
+{
+  "title": "My Timer",
+  "home": {
+    "options": {
+      "classic": "Classic",
+      "interval": "Interval",
+      "custom": "Custom"
+    },
+    "option_selected": {
+      "no_selection": "Choose your option!",
+      "classic_mode": "Classic Mode",
+      "interval_mode": "Interval Mode",
+      "custom_mode": "Custom Mode"
+    }
+  }
+}

@@ -27,6 +27,7 @@ flutter:
   assets:
     - assets/
     - assets/fonts/
+    - assets/locales/
 
   fonts:
     - family: "Nunito Sans"
