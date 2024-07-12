@@ -3,12 +3,15 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 
 import 'package:get/get.dart';
+import 'package:my_timer/app/data/enums/button_type_enum.dart';
 import 'package:my_timer/app/resources/color_manager.dart';
 import 'package:my_timer/app/resources/font_manager.dart';
 import 'package:my_timer/app/resources/sizes_manager.dart';
 import 'package:my_timer/app/resources/text_style_manager.dart';
+import 'package:my_timer/app/widgets/my_timer_button_widget.dart';
 import 'package:my_timer/app/widgets/my_timer_form_widget.dart';
 import 'package:my_timer/app/widgets/my_timer_textfield_widget.dart';
+import 'package:my_timer/app/widgets/my_timer_time_chart/my_timer_time_chart_widget.dart';
 
 import '../controllers/home_controller.dart';
 
@@ -168,6 +171,45 @@ class HomeView extends GetView<HomeController> {
                   print(formKey.currentState!.validate());
                 },
                 child: Text('Accion')),
+            SizedBox(height: SizesManager.s12),
+            MyTimerButtonWidget(
+              text: 'Name',
+              onPressed: () {},
+            ),
+            SizedBox(height: SizesManager.s12),
+            MyTimerButtonWidget(
+              text: 'Name',
+              type: ButtonType.secondary,
+              onPressed: () {},
+            ),
+            SizedBox(height: SizesManager.s12),
+            MyTimerButtonWidget(
+              text: 'Name',
+              type: ButtonType.ghost,
+              onPressed: () {},
+            ),
+            SizedBox(height: SizesManager.s12),
+            MyTimerButtonWidget(
+              text: 'Name',
+              type: ButtonType.disabled,
+              onPressed: () {},
+            ),
+            SizedBox(height: SizesManager.s12),
+            MyTimerButtonWidget(
+              text: 'Name',
+              icon: Icons.abc,
+              onPressed: () {},
+            ),
+            SizedBox(height: SizesManager.s12),
+            SizedBox(
+              width: MediaQuery.of(context).size.width * 0.25,
+              child: MyTimerButtonWidget(
+                icon: Icons.add,
+                onPressed: () {},
+              ),
+            ),
+            SizedBox(height: SizesManager.s12),
+            MyTimerTimeChartWidget(seconds: 15),
             SizedBox(height: SizesManager.s12),
           ],
         ),

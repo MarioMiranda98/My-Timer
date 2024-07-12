@@ -69,7 +69,7 @@ class MyTimerTextFieldWidget extends StatelessWidget {
           label: Text(label ?? ''),
           labelStyle: TextStyleManager.getSemiBoldStyle(
             color: theme.primaryColor,
-            fontSize: FontsManager.s24,
+            fontSize: FontsManager.s20,
           ),
           contentPadding: EdgeInsets.all(
             PaddingManager.p12,

@@ -27,6 +27,8 @@ class SizesManager {
   static const double s46 = 46.0;
   static const double s48 = 48.0;
   static const double s50 = 50.0;
+  static const double s56 = 56.0;
+  static const double s60 = 60.0;
   static const double s64 = 64.0;
   static const double s72 = 72.0;
   static const double s84 = 84.0;

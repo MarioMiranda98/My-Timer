@@ -23,4 +23,7 @@ class FontsManager {
   static const double s28 = 28.0;
   static const double s30 = 30.0;
   static const double s32 = 32.0;
+  static const double s64 = 64.0;
+  static const double s128 = 128.0;
+  static const double s256 = 256.0;
 }
