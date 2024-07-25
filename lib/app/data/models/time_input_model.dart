@@ -36,13 +36,4 @@ class TimeInputModel {
         "rounds": rounds,
         "rest": rest,
       };
-
-  ModesEnum _convertToModesEnum(String enums) {
-    for (final mode in ModesEnum.values) {
-      if (mode.toString() == enums) {
-        return mode;
-      }
-    }
-    return ModesEnum.classic;
-  }
 }
