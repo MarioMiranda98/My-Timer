@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 import 'package:get/get.dart';
 import 'package:my_timer/app/modules/home/data/option_items_data.dart';
@@ -14,8 +13,6 @@ import 'package:my_timer/app/widgets/my_timer_scaffold.dart';
 import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
-  final GlobalKey<FormBuilderState> formKey = GlobalKey<FormBuilderState>();
-
   HomeView({super.key});
 
   @override
@@ -29,7 +26,7 @@ class HomeView extends GetView<HomeController> {
           height: Helpers.getRealScreenHeight(context),
           child: Column(
             children: [
-              SizedBox(height: SizesManager.s12),
+              SizedBox(height: SizesManager.s24),
               Obx(
                 () => OptionsCarousel(
                   options: OptionItemsData.options

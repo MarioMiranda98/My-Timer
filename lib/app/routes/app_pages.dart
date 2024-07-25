@@ -4,6 +4,8 @@ import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/splash/bindings/splash_binding.dart';
 import '../modules/splash/views/splash_view.dart';
+import '../modules/timer/bindings/timer_binding.dart';
+import '../modules/timer/views/timer_view.dart';
 
 // ignore_for_file: constant_identifier_names
 
@@ -27,6 +29,11 @@ class AppPages {
       page: () => const SplashView(),
       binding: SplashBinding(),
       transition: Transition.fadeIn,
+    ),
+    GetPage(
+      name: _Paths.TIMER,
+      page: () => TimerView(),
+      binding: TimerBinding(),
     ),
   ];
 }

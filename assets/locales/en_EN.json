@@ -1,5 +1,15 @@
 {
   "title": "My Timer",
+  "texts": {
+    "button": {
+      "continue": "Continue",
+      "accept": "Accept",
+      "start": "Start"
+    },
+    "custom_errors": {
+      "greater_than_zero": "Time must be greater than 0"
+    }
+  },
   "home": {
     "options": {
       "classic": "Classic",
@@ -8,6 +18,23 @@
     },
     "option_selected": {
       "no_selection": "Choose your option!",
+      "classic_mode": "Classic Mode",
+      "interval_mode": "Interval Mode",
+      "custom_mode": "Custom Mode"
+    },
+    "classic_mode": {
+      "input_time": {
+        "label": "Time in seconds",
+        "error": {
+          "required": "Time is required"
+        }
+      },
+      "time_label": "Time",
+      "no_time": "No time"
+    }
+  },
+  "timer": {
+    "title": {
       "classic_mode": "Classic Mode",
       "interval_mode": "Interval Mode",
       "custom_mode": "Custom Mode"

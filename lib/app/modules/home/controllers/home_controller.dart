@@ -1,8 +1,14 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:my_timer/app/data/models/time_input_model.dart';
 import 'package:my_timer/app/modules/home/data/option_items_data.dart';
+import 'package:my_timer/app/routes/app_pages.dart';
 
 class HomeController extends GetxController with GetTickerProviderStateMixin {
+  static HomeController get to => Get.find<HomeController>();
+
   final totalOptions = OptionItemsData.options.length;
   final currentIndex = RxInt(-1);
 
@@ -46,5 +52,10 @@ class HomeController extends GetxController with GetTickerProviderStateMixin {
       animationsController[index].forward();
       currentIndex.value = index;
     }
+  }
+
+  void onStartTimer(TimeInputModel model) {
+    Get.toNamed(Routes.TIMER,
+        parameters: {"data": json.encode(model.toJson())});
   }
 }

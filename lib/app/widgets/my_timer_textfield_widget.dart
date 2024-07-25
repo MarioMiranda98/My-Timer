@@ -8,6 +8,7 @@ import 'package:my_timer/app/resources/sizes_manager.dart';
 import 'package:my_timer/app/resources/text_style_manager.dart';
 
 class MyTimerTextFieldWidget extends StatelessWidget {
+  final GlobalKey? textFieldKey;
   final String name;
   final String? label;
   final Widget? errorWidget;
@@ -26,6 +27,7 @@ class MyTimerTextFieldWidget extends StatelessWidget {
   final void Function(String?)? onSubmitted;
 
   MyTimerTextFieldWidget({
+    this.textFieldKey,
     this.label,
     this.focusNode,
     this.maxLength,
@@ -51,6 +53,7 @@ class MyTimerTextFieldWidget extends StatelessWidget {
     return SizedBox(
       width: mq.size.width,
       child: FormBuilderTextField(
+        key: textFieldKey,
         name: name,
         enabled: enabled,
         obscureText: obscureText,
